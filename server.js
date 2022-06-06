@@ -9,28 +9,28 @@ let words = [
         'word': "abate",
         'meaning': 'become less in amount or intensity',
         'partOfSpeech': 'verb',
-        'example': ''
+        'example': 'In an hour or so the storm would abate and they could leave.'
     },
     {
         'id': 2,
         'word': "assimilate",
         'meaning': "become like one's environment",
         'partOfSpeech': 'verb',
-        'example': ''
+        'example': 'The immigrant family found it difficult to assimilate to new customs because they were vastly different than their own culture.'
     },
     {
         'id': 3,
         'word': "concede",
         'meaning': 'admit or acknowledge, often reluctantly',
         'partOfSpeech': 'verb',
-        'example': ''
+        'example': 'Richard had no choice but to concede these demands, and charters were immediately drawn up to give effect to them.'
     },
     {
         'id': 4,
         'word': "dissipate",
         'meaning': 'go away, scatter, or disappear',
         'partOfSpeech': 'verb',
-        'example': ''
+        'example': 'Most of these symptoms dissipate within a few weeks, although people who are highly addicted can have symptoms for several months.'
     },
     {
         'id': 5,
@@ -62,52 +62,52 @@ let words = [
     },
     {
         'id': 9,
-        'word': "abate",
-        'meaning': 'become less in amount or intensity',
-        'partOfSpeech': 'verb',
-        'example': ''
+        'word': "malleable",
+        'meaning': 'capable of being shaped or bent',
+        'partOfSpeech': 'adjective',
+        'example': 'Unlike ionic solids, metals are very malleable, they can be readily bent, pressed or hammered into shape.'
     },
     {
-        'id': 1,
-        'word': "abate",
-        'meaning': 'become less in amount or intensity',
+        'id': 10,
+        'word': "obstruct",
+        'meaning': 'shut out from view',
         'partOfSpeech': 'verb',
-        'example': ''
+        'example': 'He wears part of his long hair tied back so as not to obstruct his vision.'
     },
     {
-        'id': 1,
-        'word': "abate",
-        'meaning': 'become less in amount or intensity',
+        'id': 11,
+        'word': "render",
+        'meaning': 'show in, or as in, a picture',
         'partOfSpeech': 'verb',
-        'example': ''
+        'example': 'His pleasant manners and varied culture, not less than his artistic skill, contributed to render him popular.'
     },
     {
-        'id': 1,
-        'word': "abate",
-        'meaning': 'become less in amount or intensity',
-        'partOfSpeech': 'verb',
-        'example': ''
+        'id': 12,
+        'word': "rueful",
+        'meaning': 'feeling or expressing pain or sorrow',
+        'partOfSpeech': 'adjective',
+        'example': 'Our coach was looking very rueful after such a unprecedented defeat from his underperforming football team.'
     },
     {
-        'id': 1,
-        'word': "abate",
-        'meaning': 'become less in amount or intensity',
-        'partOfSpeech': 'verb',
-        'example': ''
+        'id': 13,
+        'word': "subordinate",
+        'meaning': 'subject or submissive to authority or the control of another',
+        'partOfSpeech': 'adjective',
+        'example': 'But his subordinate rank gave him no chance to impart a greater measure of energy to the naval operations.'
     },
     {
-        'id': 1,
-        'word': "abate",
-        'meaning': 'become less in amount or intensity',
+        'id': 14,
+        'word': "tarry",
+        'meaning': 'stay longer than you should',
         'partOfSpeech': 'verb',
-        'example': ''
+        'example': "But we couldn't tarry long for there was much still to see and do."
     },
     {
-        'id': 1,
-        'word': "abate",
-        'meaning': 'become less in amount or intensity',
-        'partOfSpeech': 'verb',
-        'example': ''
+        'id': 15,
+        'word': "transgression",
+        'meaning': 'the violation of a law or a duty or moral principle',
+        'partOfSpeech': 'noun',
+        'example': ""
     }
 
 ]
@@ -125,7 +125,31 @@ app.get('/api', (request, response) => {
 })
 
 app.get('/api/:id', (request, response) => {
-    const id = request.params.id 
+    const id = Number(request.params.id)
+    const word = words.find(word => word.id === id)
+    if (word) {
+        response.json(word)
+    }
+    else {
+        response.status(404).end(); 
+    }
     console.log(`you entered the id ${id}`)
 })
 
+app.get('/api/word/:word', (request, response) => {
+    const entry = request.params.word
+    const word = words.find(word => word.word === entry)
+    if (word) {
+        response.json(word)
+    }
+    else {
+        response.status(404).end(); 
+    }
+    console.log(`you entered the word ${word}`)
+})
+
+app.get('/random', (request, response) => {
+    const random = Math.floor(Math.random() * words.length)
+    console.log(random)
+    response.json(words[random])
+})
