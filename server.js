@@ -107,7 +107,7 @@ let words = [
         'word': "transgression",
         'meaning': 'the violation of a law or a duty or moral principle',
         'partOfSpeech': 'noun',
-        'example': ""
+        'example': "The rest of us are reprimanded for even the smallest transgression, while he can get away with murder."
     }
 
 ]
@@ -153,3 +153,4 @@ app.get('/random', (request, response) => {
     console.log(random)
     response.json(words[random])
 })
+
