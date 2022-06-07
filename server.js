@@ -112,7 +112,7 @@ let words = [
 
 ]
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`PORT ${PORT} is LIVE! WE GO GET!`);
 })
 
